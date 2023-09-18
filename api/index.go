@@ -1,15 +1,10 @@
-package main
+package handler
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"fmt"
+	"net/http"
+)
 
-func main() {
-
-	app := fiber.New()
-
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
-
-	app.Listen(":3000")
-
+func Handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "<h1>Hello from Go!</h1>")
 }
