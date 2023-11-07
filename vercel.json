@@ -1,8 +1,9 @@
 {
-  "redirects": [
-    {
-      "source": "/(.*)",
-      "destination": "/api"
-    }
-  ]
+    "trailingSlash": false,
+    "rewrites": [
+        {
+            "source": "/api(.*)",
+            "destination": "/api/app.go"
+        }
+    ]
 }

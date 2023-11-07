@@ -7,11 +7,13 @@ import (
 func main() {
 	app := fiber.New()
 
-	app.Get("/", func(c *fiber.Ctx) error {
+	router := app.Group("/api")
+
+	router.Get("", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, World 👋!")
 	})
 
-	app.Get("/test", func(c *fiber.Ctx) error {
+	router.Get("/test", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, World route by test 👋!")
 	})
 
