@@ -1,26 +1,36 @@
-package main
+package api
 
 import (
-	"github.com/gofiber/fiber/v2"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
-func main() {
-	app := fiber.New()
+var (
+	app *gin.Engine
+)
 
+func heathCheck(r *gin.RouterGroup) {
+	r.GET("/", func(c *gin.Context) {
+		c.String(http.StatusOK, "Hello from golang in vercel")
+	})
+}
+
+func testRoute(r *gin.RouterGroup) {
+	r.GET("/test", func(c *gin.Context) {
+		c.String(http.StatusOK, "test  golang in vercel")
+	})
+}
+
+func init() {
+	app = gin.New()
 	router := app.Group("/api")
 
-	router.Get("", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World 👋!")
-	})
+	heathCheck(router)
+	testRoute(router)
 
-	router.Get("/test", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World route by test 👋!")
-	})
+}
 
-	// port := os.Getenv("PORT")
-	// if port == "" {
-	// 	port = "8080"
-	// }
-
-	app.Listen(":")
+func Handler(w http.ResponseWriter, r *http.Request) {
+	app.ServeHTTP(w, r)
 }
