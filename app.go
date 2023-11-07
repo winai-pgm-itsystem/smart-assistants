@@ -13,6 +13,10 @@ func main() {
 		return c.SendString("Hello, World 👋!")
 	})
 
+	app.Get("/test", func(c *fiber.Ctx) error {
+		return c.SendString("Hello, World route by test 👋!")
+	})
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
