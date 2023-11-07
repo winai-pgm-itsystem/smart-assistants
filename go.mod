@@ -2,4 +2,4 @@ module smart-assistants
 
 go 1.20
 
-require github.com/gorilla/mux v1.8.1
+require github.com/tbxark/g4vercel v0.0.4
