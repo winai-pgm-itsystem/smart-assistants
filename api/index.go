@@ -10,15 +10,6 @@ var (
 	app *gin.Engine
 )
 
-func myRoute(r *gin.RouterGroup) {
-	r.GET("/user", func(c *gin.Context) {
-		c.JSON(http.StatusOK, map[string]any{
-			"userId":   "U001",
-			"userName": "john doe",
-		})
-	})
-}
-
 func helthCheck(r *gin.RouterGroup) {
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, map[string]any{
