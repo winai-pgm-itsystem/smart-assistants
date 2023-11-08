@@ -45,9 +45,11 @@ func middelwaresVerifly(c *gin.Context) {
 
 	if veriflyId == veriflyEnvId {
 		c.Next()
+	} else {
+		c.JSON(http.StatusOK, map[string]any{
+			"message": "verifly id is invalid.",
+		})
+
 	}
 
-	c.JSON(http.StatusOK, map[string]any{
-		"message": "verifly id is invalid.",
-	})
 }
