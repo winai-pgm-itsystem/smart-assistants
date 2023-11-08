@@ -2,7 +2,6 @@ package handler
 
 import (
 	"net/http"
-	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -37,19 +36,4 @@ func init() {
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	app.ServeHTTP(w, r)
-}
-
-func middelwaresVerifly(c *gin.Context) {
-	veriflyId := c.Query("veriflyId")
-	veriflyEnvId := os.Getenv("VERIFLY_ID")
-
-	if veriflyId == veriflyEnvId {
-		c.Next()
-	} else {
-		c.JSON(http.StatusOK, map[string]any{
-			"message": "verifly id is invalid.",
-		})
-
-	}
-
 }
