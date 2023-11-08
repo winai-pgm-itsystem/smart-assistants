@@ -1,11 +1,7 @@
 {
-	"trailingSlash":false,
-	"rewrites":
-	[
-		{
-			"source":"/api(.*)",
-			"destination":"/api/entrypoint.go"
-		}
-	]
-
+  "build": {
+    "env": {
+      "GO_BUILD_FLAGS": "-ldflags '-s -w'"
+    }
+  }
 }
