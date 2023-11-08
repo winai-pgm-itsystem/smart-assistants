@@ -20,9 +20,9 @@ func helthCheck(r *gin.RouterGroup) {
 }
 func init() {
 	app = gin.New()
-	r := app.Group("/v1")
-	myRoute(r)
+	r := app.Group("/api")
 	helthCheck(r)
+	User(r)
 
 }
 
