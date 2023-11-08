@@ -41,7 +41,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 func middelwaresVerifly(c *gin.Context) {
 	veriflyId := c.Query("veriflyId")
-	veriflyEnvId := os.Getenv("veriflyId")
+	veriflyEnvId := os.Getenv("VERIFLY_ID")
 
 	if veriflyId == veriflyEnvId {
 		c.Next()
