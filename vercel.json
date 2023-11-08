@@ -1,9 +1,7 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "Dockerfile", "use": "@vercel/docker" }
-  ],
-  "routes": [
-    { "src": "/.*", "dest": "/app" }
-  ]
+  "build": {
+    "env": {
+      "GO_BUILD_FLAGS": "-ldflags '-s -w'"
+    }
+  }
 }
