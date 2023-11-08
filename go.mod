@@ -1,4 +1,4 @@
-module smart-assistants/api
+module smart-assistants
 
 go 1.20
 

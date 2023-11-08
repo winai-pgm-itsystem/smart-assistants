@@ -1,7 +1,7 @@
 {
-  "builds": [{
-    "src": "./main.go",
-    "use": "@vercel/go",
-    "config": { "maxLambdaSize": "15mb" }
-  }]
+    "functions": {
+        "api/users.go": {
+            "runtime": "vercel/go@0.2.0"
+        }
+    }
 }
