@@ -2,6 +2,7 @@ package handler
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,9 +13,11 @@ var (
 
 func helthCheck(r *gin.RouterGroup) {
 	r.GET("/", func(c *gin.Context) {
+		apiKey := os.Getenv("API_KEY")
 		c.JSON(http.StatusOK, map[string]any{
 			"app":     "smart-assistants",
 			"version": "v0.0.1",
+			"apiKey":  apiKey,
 		})
 	})
 }
