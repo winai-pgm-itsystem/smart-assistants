@@ -22,11 +22,10 @@ func init() {
 	app = gin.New()
 	r := app.Group("/api")
 	helthCheck(r)
-	User(r)
+	UserHandler(r)
 
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-
 	app.ServeHTTP(w, r)
 }
