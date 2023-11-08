@@ -1,11 +1,7 @@
 {
-  "github": {
-    "silent": true
-  },
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/api/vercel.go"
-    }
-  ]
+  "builds": [{
+    "src": "./main.go",
+    "use": "@vercel/go",
+    "config": { "maxLambdaSize": "15mb" }
+  }]
 }

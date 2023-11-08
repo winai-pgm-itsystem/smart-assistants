@@ -1,11 +1,8 @@
-module smart-assistants
+module smart-assistants/api
 
 go 1.20
 
-require (
-	github.com/gin-gonic/gin v1.9.1
-	github.com/tbxark/g4vercel v0.0.4
-)
+require github.com/gin-gonic/gin v1.9.1
 
 require (
 	github.com/bytedance/sonic v1.9.1 // indirect
