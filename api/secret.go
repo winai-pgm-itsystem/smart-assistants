@@ -1,0 +1,22 @@
+package handler
+
+import (
+	"net/http"
+	"os"
+
+	"github.com/gin-gonic/gin"
+)
+
+func getSecret(r *gin.RouterGroup) {
+	r.GET("/secret", middelwaresVerifly,
+		func(c *gin.Context) {
+			apiKey := os.Getenv("API_KEY")
+			c.JSON(http.StatusOK, map[string]any{
+				"apiKey": apiKey,
+			})
+		})
+}
+
+func SecretHandler(w http.ResponseWriter, r *http.Request) {
+	app.ServeHTTP(w, r)
+}

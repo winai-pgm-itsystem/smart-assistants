@@ -13,24 +13,41 @@ var (
 
 func helthCheck(r *gin.RouterGroup) {
 	r.GET("/", func(c *gin.Context) {
-		apiKey := os.Getenv("API_KEY")
+
 		c.JSON(http.StatusOK, map[string]any{
 			"app":     "smart-assistants",
 			"version": "v0.0.1",
-			"apiKey":  apiKey,
 		})
 	})
 }
 
 func init() {
 	app = gin.New()
-	r := app.Group("/api")
-	helthCheck(r)
-	getUser(r)
-	postUser(r)
+	router := app.Group("/api")
+	helthCheck(router)
+
+	//secret
+	getSecret(router)
+
+	//user
+	getUser(router)
+	postUser(router)
 
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	app.ServeHTTP(w, r)
+}
+
+func middelwaresVerifly(c *gin.Context) {
+	veriflyId := c.Query("veriflyId")
+	veriflyEnvId := os.Getenv("veriflyId")
+
+	if veriflyId == veriflyEnvId {
+		c.Next()
+	}
+
+	c.JSON(http.StatusOK, map[string]any{
+		"message": "verifly id is invalid.",
+	})
 }

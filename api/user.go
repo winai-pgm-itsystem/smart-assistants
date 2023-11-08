@@ -21,6 +21,7 @@ func postUser(r *gin.RouterGroup) {
 			"userId":  "U001",
 			"message": "updated successfuly!.",
 		})
+
 	})
 }
 
