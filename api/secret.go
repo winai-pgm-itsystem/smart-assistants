@@ -19,11 +19,13 @@ func getSecret(r *gin.RouterGroup) {
 				c.JSON(http.StatusOK, map[string]any{
 					"apiKey": apiKey,
 				})
+			} else {
+				c.JSON(http.StatusOK, map[string]any{
+					"message": "varifly id is invalid.",
+				})
+
 			}
 
-			c.JSON(http.StatusOK, map[string]any{
-				"message": "varifly id is invalid.",
-			})
 		})
 }
 
