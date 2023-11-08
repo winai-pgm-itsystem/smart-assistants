@@ -10,17 +10,15 @@ import (
 func getSecret(r *gin.RouterGroup) {
 	r.GET("/secret",
 		func(c *gin.Context) {
-
 			veriflyId := c.Query("veriflyId")
 			veriflyEnvId := os.Getenv("VERIFLY_ID")
 			apiKey := os.Getenv("API_KEY")
-
 			if veriflyId == veriflyEnvId {
 				c.JSON(http.StatusOK, map[string]any{
 					"apiKey": apiKey,
 				})
 			} else {
-				c.JSON(http.StatusOK, map[string]any{
+				c.JSON(http.StatusBadRequest, map[string]any{
 					"message": "varifly id is invalid.",
 				})
 

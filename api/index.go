@@ -29,8 +29,7 @@ func init() {
 	getSecret(router)
 
 	//user
-	getUser(router)
-	postUser(router)
+	postWebHook(router)
 
 }
 
