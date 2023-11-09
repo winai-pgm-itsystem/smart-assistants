@@ -19,18 +19,18 @@ func HealthCheck(r *gin.RouterGroup) {
 	})
 }
 
-func SetupRoutes() {
-	router := app.Group("/api")
-	HealthCheck(router)
+// func SetupRoutes() {
+// 	router := app.Group("/api")
+// 	HealthCheck(router)
 
-}
+// }
 
 func init() {
 	app = gin.New()
 	router := app.Group("/api")
 	HealthCheck(router)
 
-	app.Run()
+	// app.Run()
 
 }
 
