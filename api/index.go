@@ -25,13 +25,14 @@ func SetupRoutes() {
 
 }
 
-// func init() {
-// 	router := app.Group("/api")
-// 	HealthCheck(router)
+func init() {
+	app = gin.New()
+	router := app.Group("/api")
+	HealthCheck(router)
 
-// 	app.Run()
+	app.Run()
 
-// }
+}
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	app.ServeHTTP(w, r)
