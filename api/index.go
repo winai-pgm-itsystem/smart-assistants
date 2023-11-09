@@ -10,26 +10,18 @@ var (
 	app *gin.Engine
 )
 
-func helthCheck(r *gin.RouterGroup) {
+func HealthCheck(r *gin.RouterGroup) {
 	r.GET("/", func(c *gin.Context) {
-
-		c.JSON(http.StatusOK, map[string]any{
+		c.JSON(http.StatusOK, map[string]interface{}{
 			"app":     "smart-assistants",
 			"version": "v0.0.1",
 		})
 	})
 }
 
-func init() {
-	app = gin.New()
+func SetupRoutes(app *gin.Engine) {
 	router := app.Group("/api")
-	helthCheck(router)
-
-	//secret
-	getSecret(router)
-
-	//user
-	postWebHook(router)
+	HealthCheck(router)
 
 }
 
