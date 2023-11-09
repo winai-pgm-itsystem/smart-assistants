@@ -1,42 +1,3 @@
-// package handler
-
-// import (
-// 	"net/http"
-
-// 	"github.com/gin-gonic/gin"
-// )
-
-// var (
-// 	app *gin.Engine
-// )
-
-// func HelthCheck(r *gin.RouterGroup) {
-// 	r.GET("/", func(c *gin.Context) {
-
-// 		c.JSON(http.StatusOK, map[string]any{
-// 			"app":     "smart-assistants",
-// 			"version": "v0.0.1",
-// 		})
-// 	})
-// }
-
-// func main() {
-// 	app = gin.New()
-// 	router := app.Group("/api")
-// 	HelthCheck(router)
-
-// 	//secret
-// 	getSecret(router)
-
-// 	//user
-// 	postWebHook(router)
-
-// }
-
-// func Handler(w http.ResponseWriter, r *http.Request) {
-// 	app.ServeHTTP(w, r)
-// }
-
 package handler
 
 import (
@@ -45,21 +6,25 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-const (
-	StatusBadRequest = http.StatusBadRequest
-	StatusOK         = http.StatusOK
+var (
+	app *gin.Engine
 )
 
-func healthCheck(c *gin.Context) {
-	c.JSON(StatusOK, gin.H{
-		"message": "server running..",
+func HealthCheck(r *gin.RouterGroup) {
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, map[string]interface{}{
+			"app":     "smart-assistants",
+			"version": "v0.0.1",
+		})
 	})
 }
 
-func main() {
-	router := gin.Default()
-	router.GET("/", healthCheck)
+func SetupRoutes(app *gin.Engine) {
+	router := app.Group("/api")
+	HealthCheck(router)
 
-	router.Run()
+}
 
+func Handler(w http.ResponseWriter, r *http.Request) {
+	app.ServeHTTP(w, r)
 }
