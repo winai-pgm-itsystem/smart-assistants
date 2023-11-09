@@ -25,6 +25,14 @@ func SetupRoutes(app *gin.Engine) {
 
 }
 
+func main() {
+	router := app.Group("/api")
+	HealthCheck(router)
+
+	app.Run()
+
+}
+
 func Handler(w http.ResponseWriter, r *http.Request) {
 	app.ServeHTTP(w, r)
 }
