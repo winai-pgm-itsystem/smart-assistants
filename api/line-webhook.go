@@ -2,7 +2,6 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"os"
 	"smart-assistants/entities"
@@ -28,16 +27,18 @@ func LineWebHookHandler(r *gin.RouterGroup) {
 				return
 			}
 
-			jsonContent, err := json.Marshal(webHookEvent)
+			_, err := json.Marshal(webHookEvent)
 			if err != nil {
 				c.JSON(http.StatusBadRequest, gin.H{
 					"message": "error converting to JSON",
 				})
 				return
 			}
-			fmt.Println(string(jsonContent))
-			handleMessageEvent(webHookEvent)
 
+			if len(webHookEvent.Events) != 0 {
+				handleMessageEvent(webHookEvent)
+
+			}
 			c.JSON(http.StatusOK, gin.H{
 				"message": "successfuly.",
 			})

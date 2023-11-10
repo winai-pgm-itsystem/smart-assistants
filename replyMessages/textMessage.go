@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"net/http"
+	"os"
 )
 
 func TextMessage(replyToken, message string) {
@@ -26,7 +27,7 @@ func TextMessage(replyToken, message string) {
 	}
 
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer {RhS6tg3pgrEaImRK0uMqSriQ1sA+MSLdsnx+YctlkM4MkJAQlwKPD/7QcGx2RMxHDGf51d3BOxf10xGa14gcpjaToyZNDLJw7eNn8NwsBtfDEsFV9VFOPwkrh3/TpElZpZjpja4kajfZmCXUe/u8nQdB04t89/1O/w1cDnyilFU=}")
+	req.Header.Set("Authorization", fmt.Sprintf("Bearer {%s}", os.Getenv("LINE_CHANNEL_ACCESS_TOKEN")))
 
 	client := &http.Client{}
 	resp, err := client.Do(req)

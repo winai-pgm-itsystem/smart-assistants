@@ -30,14 +30,14 @@ func SetupRoutes(app *gin.Engine) {
 
 }
 
-// func init() {
-// 	app = gin.New()
-// 	router := app.Group("/api")
-// 	HealthCheck(router)
-// 	CheckEnvirontmentTarget(router)
-// 	LineWebHookHandler(router)
+func init() {
+	app = gin.New()
+	router := app.Group("/api")
+	HealthCheck(router)
+	CheckEnvirontmentTarget(router)
+	LineWebHookHandler(router)
 
-// }
+}
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	app.ServeHTTP(w, r)
