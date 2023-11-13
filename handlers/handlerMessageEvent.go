@@ -1,4 +1,4 @@
-package handler
+package handlers
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 	"strconv"
 )
 
-func handleMessageEvent(webHookEvent *entities.WebHookEvent) {
+func HandleMessageEvent(webHookEvent *entities.WebHookEvent) {
 	message := webHookEvent.Events[0].Message.Text
 	replyToken := webHookEvent.Events[0].ReplyToken
 	usserId := webHookEvent.Events[0].Source.UserID

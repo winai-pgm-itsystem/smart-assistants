@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"smart-assistants/entities"
+	"smart-assistants/handlers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -36,7 +37,7 @@ func LineWebHookHandler(r *gin.RouterGroup) {
 			}
 
 			if len(webHookEvent.Events) != 0 {
-				handleMessageEvent(webHookEvent)
+				handlers.HandleMessageEvent(webHookEvent)
 
 			}
 			c.JSON(http.StatusOK, gin.H{
