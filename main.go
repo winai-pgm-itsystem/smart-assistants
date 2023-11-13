@@ -9,16 +9,16 @@ package main
 // 	"github.com/joho/godotenv"
 // )
 
-// func main() {
-// comment this when deploy to vercel
-// err := godotenv.Load("prod.env")
-// if err != nil {
-// 	log.Fatal("Error loading .env file")
-// }
+func main() {
+	// comment this when deploy to vercel
+	// err := godotenv.Load("prod.env")
+	// if err != nil {
+	// 	log.Fatal("Error loading .env file")
+	// }
 
-// app := gin.New()
-// handler.SetupRoutes(app)
+	// app := gin.New()
+	// handler.SetupRoutes(app)
 
-// app.Run(":8080")
+	// app.Run(":8080")
 
-// }
+}
