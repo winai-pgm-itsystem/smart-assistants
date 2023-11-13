@@ -8,7 +8,7 @@ import (
 )
 
 func AddExpenseHandler(category string, amount float32, remark string) (string, error) {
-	date := utils.GetCurrentDate("Asia/Bangkok")
+	date := utils.GetCurrentDate()
 	requestBody := map[string]interface{}{
 		"records": []map[string]interface{}{
 			{

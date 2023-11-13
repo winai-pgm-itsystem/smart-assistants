@@ -21,14 +21,14 @@ func HealthCheck(r *gin.RouterGroup) {
 }
 
 // comment this when deploy to vercel
-func SetupRoutes(app *gin.Engine) {
-	router := app.Group("/api")
+// func SetupRoutes(app *gin.Engine) {
+// 	router := app.Group("/api")
 
-	HealthCheck(router)
-	CheckEnvirontmentTarget(router)
-	LineWebHookHandler(router)
+// 	HealthCheck(router)
+// 	CheckEnvirontmentTarget(router)
+// 	LineWebHookHandler(router)
 
-}
+// }
 
 func init() {
 	app = gin.New()
