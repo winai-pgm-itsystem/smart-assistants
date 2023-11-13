@@ -10,7 +10,7 @@ import (
 )
 
 func LineWebHookHandler(r *gin.RouterGroup) {
-	r.POST("/line-webhook",
+	r.POST("/linewebhook",
 		func(c *gin.Context) {
 			apiKey := c.Query("apikey")
 			if !isValidAPIKey(apiKey) {
@@ -52,6 +52,6 @@ func isValidAPIKey(apiKey string) bool {
 	return apiKey == apiKeyFromEnv
 }
 
-func HandlerWebhook(w http.ResponseWriter, r *http.Request) {
+func LineHandler(w http.ResponseWriter, r *http.Request) {
 	app.ServeHTTP(w, r)
 }
