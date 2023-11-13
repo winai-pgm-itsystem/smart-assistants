@@ -14,8 +14,10 @@ func HandleMessageEvent(webHookEvent *entities.WebHookEvent) {
 	message := webHookEvent.Events[0].Message.Text
 	replyToken := webHookEvent.Events[0].ReplyToken
 	usserId := webHookEvent.Events[0].Source.UserID
-
+	//
 	isMacherExpenseMode, expnenses := utils.MacherExpenseMode(message)
+	//
+	ppqrAmount, macherPPQR := utils.MacherPPQRMode(message)
 
 	if usserId != os.Getenv("USER_ID") {
 		replymessages.SendTextMessage(replyToken, "user id is invalid.")
@@ -61,7 +63,17 @@ func HandleMessageEvent(webHookEvent *entities.WebHookEvent) {
 			return
 		}
 
-		replymessages.SendFlexMessage(utils.GetSymbolCurrentcyFormat(amount), category, utils.GetSymbolCurrentcyFormat(currentTotalPerDate), utils.GetSymbolCurrentcyFormat(limitPerMonth-currentTotalPerMonth), utils.GetToday())
+		replymessages.SendFlexExpenseMessage(utils.GetSymbolCurrentcyFormat(amount), category, utils.GetSymbolCurrentcyFormat(currentTotalPerDate), utils.GetSymbolCurrentcyFormat(limitPerMonth-currentTotalPerMonth), utils.GetToday())
+
+	} else if macherPPQR {
+
+		if ppqrAmount > 0 {
+			replymessages.SendFlexPPQRMessage(utils.GetSymbolCurrentcyFormat(ppqrAmount), ppqrAmount)
+
+		} else {
+			replymessages.SendTextMessage(replyToken, "ppqr not generated.")
+
+		}
 
 	} else {
 		replymessages.SendTextMessage(replyToken, fmt.Sprintf("message %s not macher.", message))
