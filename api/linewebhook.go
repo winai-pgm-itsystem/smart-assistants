@@ -5,12 +5,13 @@ import (
 	"net/http"
 	"os"
 	"smart-assistants/entities"
+	"smart-assistants/handlers"
 
 	"github.com/gin-gonic/gin"
 )
 
 func LineWebHookHandler(r *gin.RouterGroup) {
-	r.POST("/line-webhook",
+	r.POST("/linewebhook",
 		func(c *gin.Context) {
 			apiKey := c.Query("apikey")
 			if !isValidAPIKey(apiKey) {
@@ -36,7 +37,7 @@ func LineWebHookHandler(r *gin.RouterGroup) {
 			}
 
 			if len(webHookEvent.Events) != 0 {
-				handleMessageEvent(webHookEvent)
+				handlers.HandleMessageEvent(webHookEvent)
 
 			}
 			c.JSON(http.StatusOK, gin.H{
@@ -52,6 +53,6 @@ func isValidAPIKey(apiKey string) bool {
 	return apiKey == apiKeyFromEnv
 }
 
-func HandlerWebhook(w http.ResponseWriter, r *http.Request) {
+func LineHandler(w http.ResponseWriter, r *http.Request) {
 	app.ServeHTTP(w, r)
 }
