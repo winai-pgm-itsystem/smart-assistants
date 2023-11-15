@@ -1,37 +1,56 @@
 package replymessages
 
 import (
-	"context"
-
+	"bytes"
+	"fmt"
+	"io/ioutil"
+	"net/http"
 	"os"
-
-	gl "cloud.google.com/go/ai/generativelanguage/apiv1beta2"
-	pb "cloud.google.com/go/ai/generativelanguage/apiv1beta2/generativelanguagepb"
-
-	"google.golang.org/api/option"
+	"smart-assistants/entities"
 )
 
 func aiGenearateText(message string) (string, error) {
 
-	ctx := context.Background()
-	client, err := gl.NewTextRESTClient(ctx, option.WithAPIKey(os.Getenv("PALM_KEY")))
+	host := "https://generativelanguage.googleapis.com/v1beta3/models/text-bison-001:generateText"
+	url := fmt.Sprintf(`%s?key=%s`, host, os.Getenv("PALM_KEY"))
+
+	requestBody := []byte(fmt.Sprintf(`{
+		"prompt": {
+			"text": "%s"
+		}
+	}`, message))
+
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(requestBody))
 	if err != nil {
 		return "", err
 	}
 
-	defer client.Close()
-	req := &pb.GenerateTextRequest{
-		Model: "models/text-bison-001",
-		Prompt: &pb.TextPrompt{
-			Text: message,
-		},
-	}
+	req.Header.Set("Content-Type", "application/json")
 
-	resp, err := client.GenerateText(ctx, req)
+	client := &http.Client{}
+	resp, err := client.Do(req)
 	if err != nil {
 		return "", err
 	}
+	defer resp.Body.Close()
 
-	return resp.Candidates[0].Output, nil
+	if resp.StatusCode != http.StatusOK {
+		bodyBytes, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return "", fmt.Errorf("failed to read res body: %s", err)
+		}
+
+		return "", fmt.Errorf("ai  request failed message: %s", string(bodyBytes))
+	}
+	bodyBytes, errRead := ioutil.ReadAll(resp.Body)
+	if errRead != nil {
+		return "", fmt.Errorf("failed to read res body: %s", err)
+	}
+	result, err := entities.UnmarshalAIResponse(bodyBytes)
+	if err != nil {
+		return "", fmt.Errorf("failed to decode JSON response: %s", err)
+	}
+
+	return result.Candidates[0].Output, nil
 
 }
