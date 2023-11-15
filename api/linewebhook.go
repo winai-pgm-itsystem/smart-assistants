@@ -53,6 +53,6 @@ func isValidAPIKey(apiKey string) bool {
 	return apiKey == apiKeyFromEnv
 }
 
-// func LineHandler(w http.ResponseWriter, r *http.Request) {
-// 	app.ServeHTTP(w, r)
-// }
+func LineHandler(w http.ResponseWriter, r *http.Request) {
+	app.ServeHTTP(w, r)
+}
