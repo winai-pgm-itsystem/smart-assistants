@@ -81,7 +81,7 @@ func HandleMessageEvent(webHookEvent *entities.WebHookEvent) {
 			replymessages.SendTextMessage(replyToken, fmt.Sprintf("message %s not macher.", message))
 		}
 
-		replymessages.SendTextMessage(replyToken, result)
+		replymessages.SendTextMessage(replyToken, fmt.Sprintf(`%s`, result))
 
 	}
 
