@@ -27,6 +27,6 @@ func CheckEnvirontmentTarget(r *gin.RouterGroup) {
 	})
 }
 
-func SecretHandler(w http.ResponseWriter, r *http.Request) {
-	app.ServeHTTP(w, r)
-}
+// func SecretHandler(w http.ResponseWriter, r *http.Request) {
+// 	app.ServeHTTP(w, r)
+// }

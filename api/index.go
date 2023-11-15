@@ -1,44 +1,23 @@
-package handler
+package api
 
 import (
 	"net/http"
 
-	"github.com/gin-gonic/gin"
+	"github.com/labstack/echo/v4"
 )
 
-var (
-	app *gin.Engine
-)
+var srv http.Handler
 
-func HealthCheck(r *gin.RouterGroup) {
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, map[string]interface{}{
-			"app":     "smart-assistants",
-			"version": "v0.0.1",
-		})
+func main() {
 
-	})
+	e := echo.New()
+	e.GET("/", HealthCheck)
+	e.GET("/books", Book)
+	srv = e
+
+	e.Start(":8080")
 }
 
-// comment this when deploy to vercel
-// func SetupRoutes(app *gin.Engine) {
-// 	router := app.Group("/api")
-
-// 	HealthCheck(router)
-// 	CheckEnvirontmentTarget(router)
-// 	LineWebHookHandler(router)
-
-// }
-
-func init() {
-	app = gin.New()
-	router := app.Group("/api")
-	HealthCheck(router)
-	CheckEnvirontmentTarget(router)
-	LineWebHookHandler(router)
-
-}
-
-func Handler(w http.ResponseWriter, r *http.Request) {
-	app.ServeHTTP(w, r)
+func Hanlder(w http.ResponseWriter, r *http.Request) {
+	srv.ServeHTTP(w, r)
 }
