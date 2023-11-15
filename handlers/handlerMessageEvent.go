@@ -76,8 +76,13 @@ func HandleMessageEvent(webHookEvent *entities.WebHookEvent) {
 		}
 
 	} else {
-		replymessages.SendTextMessage(replyToken, fmt.Sprintf("message %s not macher.", message))
-		fmt.Println(" message not macher")
+		result, err := utils.AIGenearateText(message)
+		if err != nil {
+			replymessages.SendTextMessage(replyToken, fmt.Sprintf("message %s not macher.", message))
+		}
+
+		replymessages.SendTextMessage(replyToken, result)
+
 	}
 
 }
