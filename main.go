@@ -21,4 +21,17 @@ func main() {
 
 	// app.Run(":8080")
 
+	// message := "ขายอะไร"
+	// var replyText string
+
+	// if strings.Contains(message, "ขายอะไร") {
+	// 	replyText = "- กาแฟ และเครื่องดื่มค่ะ เช่น คาปูชิโน่ ลาเต้ อเมริกาโน่ ชาไทย"
+	// 	fmt.Println(replyText)
+	// } else if strings.Contains(message, "สวัสดี") {
+	// 	replyText = "สวัสดีค่ะ"
+	// 	fmt.Println(replyText)
+	// } else {
+	// 	replyText = "ขออภัยค่ะ ฉันไม่เข้าใจคำถาม กรุณาถามคำถามใหม่ค่ะ"
+	// 	fmt.Println(replyText)
+	// }
 }
