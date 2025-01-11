@@ -63,10 +63,10 @@ func HandleMessageEvent(webHookEvent *entities.WebHookEvent) {
 
 	// } else if macherPPQR {
 
-	// 	if ppqrAmount > 0 {
-	// 		replymessages.SendFlexPPQRMessage(utils.GetSymbolCurrentcyFormat(ppqrAmount), ppqrAmount)
+	// if ppqrAmount > 0 {
+	// 	replymessages.SendFlexPPQRMessage(utils.GetSymbolCurrentcyFormat(ppqrAmount), ppqrAmount)
 
-	// 	} else {
+	// } else {
 	// 		replymessages.SendTextMessage(replyToken, "ppqr not generated.")
 
 	// 	}
