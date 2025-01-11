@@ -85,7 +85,7 @@ func HandleMessageEvent(webHookEvent *entities.WebHookEvent) {
 	var replyText string
 
 	if strings.Contains(message, "ขายอะไร") {
-		replyText = "- กาแฟ และเครื่องดื่มค่ะ เช่น\n- คาปูชิโน่\n- ลาเต้\n- อเมริกาโน่\n - ชาไทย"
+		replyText = `- กาแฟ และเครื่องดื่มค่ะ เช่น\n- คาปูชิโน่\n- ลาเต้\n- อเมริกาโน่\n - ชาไทย`
 		replymessages.SendTextMessage(replyToken, replyText)
 	} else if strings.Contains(message, "สวัสดี") {
 		replyText = "สวัสดีค่ะ"

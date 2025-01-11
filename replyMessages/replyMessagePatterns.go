@@ -33,7 +33,7 @@ func SendTextMessage(replyToken, message string) {
     "messages": [
       {
         "type": "text",
-        "text": %s
+        "text": "%s"
       }
     ]
   }`, replyToken, message))
