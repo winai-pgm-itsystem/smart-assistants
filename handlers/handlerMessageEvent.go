@@ -3,7 +3,6 @@ package handlers
 import (
 	"smart-assistants/entities"
 	replymessages "smart-assistants/replyMessages"
-	"strings"
 )
 
 func HandleMessageEvent(webHookEvent *entities.WebHookEvent) {
@@ -82,17 +81,19 @@ func HandleMessageEvent(webHookEvent *entities.WebHookEvent) {
 	// 	replymessages.SendTextMessage(replyToken, fmt.Sprintf(`%s`, result))
 
 	// }
-	var replyText string
+	// var replyText string
 
-	if strings.Contains(message, "ขายอะไร") {
-		replyText = "- กาแฟ และเครื่องดื่มค่ะ เช่น\n- คาปูชิโน่\n- ลาเต้\n- อเมริกาโน่\n- ชาไทย"
-		replymessages.SendTextMessage(replyToken, replyText)
-	} else if strings.Contains(message, "สวัสดี") {
-		replyText = "สวัสดีค่ะ"
-		replymessages.SendTextMessage(replyToken, replyText)
-	} else {
-		replyText = "ขออภัยค่ะ ฉันไม่เข้าใจคำถาม กรุณาถามคำถามใหม่ค่ะ"
-		replymessages.SendTextMessage(replyToken, replyText)
-	}
+	// if strings.Contains(message, "ขายอะไร") {
+	// 	replyText = "- กาแฟ และเครื่องดื่มค่ะ เช่น\n- คาปูชิโน่\n- ลาเต้\n- อเมริกาโน่\n- ชาไทย"
+	// 	replymessages.SendTextMessage(replyToken, replyText)
+	// } else if strings.Contains(message, "สวัสดี") {
+	// 	replyText = "สวัสดีค่ะ"
+	// 	replymessages.SendTextMessage(replyToken, replyText)
+	// } else {
+	// 	replyText = "ขออภัยค่ะ ฉันไม่เข้าใจคำถาม กรุณาถามคำถามใหม่ค่ะ"
+	// 	replymessages.SendTextMessage(replyToken, replyText)
+	// }
+
+	replymessages.SendTextMessage(replyToken, message)
 
 }
